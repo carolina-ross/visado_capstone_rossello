@@ -1,0 +1,244 @@
+:root {
+  
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  background: #315168;
+  color: #ffffff;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+
+footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding:25px 0;
+  font-size: 12px;
+}
+
+
+/** Btn */
+
+.btn{
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 11px;
+  cursor: pointer;
+  background: #D9D9D9;
+  outline: none;
+  box-shadow: 4px 4px 5px 2px rgba(0, 0, 0, 0.20) inset;
+  color: #031B2D;
+  text-align: center;
+  outline: none;
+  font-family: '__Open_Sans_a5ed60', '__Open_Sans_Fallback_a5ed60';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  border: none;
+  padding: 15px 80px;
+}
+
+/** Input **/
+
+input{
+  background: #D9D9D9;
+  border: none;
+  padding:15px;
+  outline: none;
+}
+
+label{
+  font-size: 20px;
+  display: block;
+  margin: 10px 0;
+}
+
+/** FormFindVisa **/
+.form-find-visa-header , .header{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 35px;
+}
+
+.form-find-visa-body{
+  padding: 30px 0 50px 0;
+  max-width: 591px;
+  margin: 0 auto;
+}
+
+.form-find-visa h1{
+  font-size: 120px;
+  font-weight: 600;
+}
+
+
+.form-find-visa h2{
+  font-size: 36px;
+  font-weight: 600;
+  padding-left: 55px;
+  margin-bottom: 20px;
+}
+
+.form-find-visa form{
+  padding: 10px 45px 30px 45px;
+}
+
+.form-find-visa form input{
+  width: 100%;
+}
+
+.form-find-visa .form-item.second{
+  margin: 45px 0 20px 0;
+}
+
+.form-find-visa .container-button{
+  margin: 85px 0 0 0;
+  text-align: center;
+
+}
+
+
+/** Form Register **/
+
+.form-register-body{
+  max-width: 542px;
+  margin: 0 auto;
+  padding: 40px 0 80px 0;
+
+}
+
+.form-register-title h1{
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 45px;
+}
+
+.form-register-header{
+  padding: 25px;
+}
+
+.form-register h2{
+  font-size: 22px;
+  font-weight: 400;
+}
+.form-register  form{
+  padding:0 100px;
+}
+.form-register input{
+  width: 100%;
+  padding: 10px;
+}
+
+.form-register-body .form-item{
+  margin: 25px 0;
+}
+
+.form-register-body .form-item label{
+  font-size: 16px;
+}
+
+.form-register .container-button{
+  text-align: center;
+  margin: 35px 0;
+}
+.form-register .container-button .btn{
+  padding: 10px 60px;
+}
+.form-register .container-login{
+  text-align: center;
+}
+.form-register .container-login span{
+  display: block;
+  margin-bottom: 25px;
+}
+.form-register .container-login .btn{
+  padding: 10px 60px;
+}
+
+
+/** Profile **/
+.profile-header{
+  padding:25px;
+}
+.profile-body h1{
+  font-size: 28px;
+  margin-bottom: 35px;
+  font-weight: 400;
+}
+.profile-body{
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+.profile-details{
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+.profile-details span{
+  display: block;
+}
+
+.profile-body .btn{
+  margin-bottom: 80px;
+}
+
+/** saved-trips-page **/
+
+.saved-trips-page{
+}
+
+.saved-trips-cards{
+  display: flex;
+  max-width: 1000px;
+  margin:  0 auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card-trip{
+  cursor: pointer;
+  margin: 35px 0;
+}
+.card-trip-title{
+  padding-top: 15px;
+  display: inline-block;
+}
+.card-trip-image{
+  width: 268px;
+  height:268px;
+  background: #D9D9D9;
+}
+
+/** visa-details-page **/
+
+.visa-details-page{
+  height: 100vh;
+  background-image: url("../public/bg-visa.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.visa-detail{
+  max-width: 1145px;
+  margin: 0 auto;
+}
+.visa-detail-title{
+  margin-bottom: 25px;
+}
+.visa-detail-container{
+  height:558px;
+  background: #D9D9D9;
+  color: #031B2D;
+  padding: 15px;
+  text-align: center;
+}
