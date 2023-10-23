@@ -13,7 +13,7 @@ export const SavedTrips = () => {
     const { auth } = useContext(AuthContext)
 
     const getPlansSaved = async()=>{
-        const response = await fetch(`http://localhost:3000/api/users/plans`,{
+        const response = await fetch(`${process.env.API_URL}/api/users/plans`,{
             method: 'POST',
             body: JSON.stringify({token: auth.token })
         })
