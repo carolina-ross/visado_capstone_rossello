@@ -11,7 +11,7 @@ export const ButtonSaveTrip = ({plan}) => {
   
   const savePlan = async() =>{
 
-    const response = await fetch(`${process.env.API_URL}/api/plans`,{
+    const response = await fetch(`/api/plans`,{
         method: 'POST',
         body: JSON.stringify({token: auth.token , plan_id: plan.data._id })
     })
