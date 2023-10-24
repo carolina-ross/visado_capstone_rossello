@@ -1,7 +1,7 @@
 import { ButtonSaveTrip } from "./ButtonSaveTrip"
 
 async function getVisaDetails(citizenship , destination){
-    const response = await fetch(`/api/plans/get`,{
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans/get`,{
       method: 'POST',
       body: JSON.stringify({
         destination: destination,
