@@ -1,7 +1,13 @@
 import { ButtonSaveTrip } from "./ButtonSaveTrip"
 
 async function getVisaDetails(citizenship , destination){
-    const response = await fetch(`${process.env.API_VERCEL_APP}/api/plans?destination=${destination}&citizenship=${citizenship}`)
+    const response = await fetch(`/api/plans/get?destination=${destination}&citizenship=${citizenship}`,{
+      method: 'POST',
+      body: JSON.stringify({
+        destination: destination,
+        citizenship: citizenship
+        })
+    })
     return response.json()
 }
 
