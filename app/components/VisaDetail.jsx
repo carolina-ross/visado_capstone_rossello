@@ -1,11 +1,11 @@
 import { ButtonSaveTrip } from "./ButtonSaveTrip"
 
 async function getVisaDetails(citizenship , destination){
-    const response = await fetch(`/api/plans/get?destination=${destination}&citizenship=${citizenship}`,{
+    const response = await fetch(`/api/plans/get`,{
       method: 'POST',
       body: JSON.stringify({
         destination: destination,
-        citizenship: citizenship
+        citizenship: citizenship,
         })
     })
     return response.json()
