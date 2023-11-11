@@ -7,14 +7,12 @@ import { AuthContext } from "../context/AuthContext"
 export const Authorization = ({children}) => {
 
   const { auth } = useContext(AuthContext);
-
-  console.log("enter here" , auth)
-
-  if(!auth.authenticated){
-    redirect('/')
+  
+  if(!auth.pending){
+    if(auth.authenticated){
+      return children
+    }else{
+      return redirect('/')
+    }
   }
-
-  return (
-    auth.authenticated ? children : null
-  )
 }

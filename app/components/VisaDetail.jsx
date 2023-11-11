@@ -15,15 +15,38 @@ async function getVisaDetails(citizenship , destination){
 export const VisaDetail = async({searchParams}) => {
 
   const data = await getVisaDetails(searchParams.citizenship , searchParams.destination)
-// 
 
+  const visaDetailsList = () => {
+
+    let renderHtml = [];
+    if(data.data.visa_details.visaCountryProcess){
+        renderHtml = data.data.visa_details.visaCountryProcess?.map((step)=>{
+          return <li> <strong>{ step.visaProcess.title }:</strong> {step.visaProcess.details} </li>
+        })
+    }else{
+      renderHtml = data.data.visa_details.visaCountryDocuments?.map((step)=>{
+        return <li> <strong>{ step.visaDocument.name }:</strong> {step.visaDocument.details} </li>
+      })
+    }
+
+    return renderHtml;
+  }
 
   return (
     <div className="visa-detail">
         <h1 className="visa-detail-title">{searchParams.destination}</h1>
         <div className="visa-detail-container">
             {
-              data.success ? data.data.visa_details.travelRestriction.details : data.message
+              data.success && !data.data.visa_details.error ? <ol>
+
+                {
+                  visaDetailsList()
+                }
+
+              
+              </ol> : <>
+                { data.message ? data.message : 'Info not found' }
+              </>
             }
         </div>
 

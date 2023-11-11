@@ -10,11 +10,14 @@ export const Profile = () => {
   const { auth , setAuth } = useContext(AuthContext)
 
   const logout = () => {
-    setAuth({})
+    setAuth({
+      authenticaded: false,
+      token: null,
+      user: null
+    })
     localStorage.removeItem("authVisado");
   }
 
-  console.log("here" , auth)
   return (
     <div className="profile">
 
@@ -24,7 +27,7 @@ export const Profile = () => {
 
         <div className="profile-body">
             <h1>Hello { auth.user?.name }</h1>
-            <Image src="/register-icon.svg" height={207} width={207} />
+            <Image className="profile-image" src="/register-icon.svg" height={207} width={207} alt="profile" />
             <div className="profile-details">
                 <span>ID: {  auth.user?._id }</span>
                 <span>{ auth.user?.username }</span>

@@ -1,12 +1,12 @@
 'use client'
 
-import { useState , useContext } from 'react'
+import { useState , useContext , useEffect } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { ButtonBack } from "./ButtonBack"
 import { useRouter } from 'next/navigation'
 
 
-export const FormRegister = () => {
+export const FormRegister = ({isDesktop}) => {
 
   const { auth , setAuth } = useContext(AuthContext);
 
@@ -16,14 +16,20 @@ export const FormRegister = () => {
 
   const router = useRouter();
 
+  useEffect(()=>{
+    if(auth.authenticated){
+        router.push('/profile')
+    }
+  } , [auth])
+
   const handleChange = (event) => {
     setErrorRegister({error: false , message: ""})
     setRegisterForm({
         ...registerForm,
         [event.target.name] : event.target.value
     })
-    console.log("reg" , registerForm)
   } 
+
 
   const handleSubmit = async(event) => {
     event.preventDefault();
@@ -32,8 +38,6 @@ export const FormRegister = () => {
             method: 'POST',
             body: JSON.stringify(registerForm)
         })
-
-        console.log("resp" , response)
 
         const data = await response.json();
         
@@ -44,12 +48,9 @@ export const FormRegister = () => {
 
         setAuth({authenticated: true , user: data.data , token: data.token})
 
-        router.push('/profile')
-
     }catch(error){
         setErrorRegister({error: true , message: error.message})
     }
-    console.log("fed" , registerForm)
   }
 
   return (
@@ -93,12 +94,16 @@ export const FormRegister = () => {
                     errorRegister.error ? <span style={{color: 'red' , display: 'block' , textAlign: 'center'}}> {errorRegister.message} </span> : null
                 }
 
-                <div className="container-login">
-                    <span>Already a member?</span>
-                    <button type="button" className="btn" onClick={() => router.push('profile')} >
-                        Log In
-                    </button>
-                </div>
+                {
+                    !isDesktop ? 
+                        <div className="container-login">
+                            <span>Already a member?</span>
+                            <button type="button" className="btn" onClick={() => router.push('login')} >
+                                Log In
+                            </button>
+                        </div>
+                    : null
+                }
 
             </form>
         </div>
