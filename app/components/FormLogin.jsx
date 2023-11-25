@@ -4,11 +4,14 @@ import { useState , useContext , useEffect } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import { ButtonBack } from "./ButtonBack"
 import { useRouter } from 'next/navigation'
+import { LoadingComponent } from './LoadingComponent'
 
 
 export const FormLogin = () => {
 
   const { auth , setAuth } = useContext(AuthContext);
+
+  const [ isLoading , setIsLoading ] = useState(false)
 
   const [ loginForm , setLoginForm ] = useState({})
  
@@ -45,12 +48,17 @@ export const FormLogin = () => {
   const handleSubmit = async(event) => {
     event.preventDefault();
     try{
+
+        setIsLoading(true)
+
         const response = await fetch('/api/users/login' , {
             method: 'POST',
             body: JSON.stringify(loginForm)
         })
 
         const data = await response.json();
+
+        setIsLoading(false)
         
         if(!data.success) 
             throw data
@@ -104,6 +112,10 @@ export const FormLogin = () => {
 
                 {
                     errorLogin.error ? <span style={{color: 'red' , display: 'block' , textAlign: 'center'}}> {errorLogin.message} </span> : null
+                }
+
+                {
+                    isLoading ? <LoadingComponent /> : null
                 }
 
             </form>

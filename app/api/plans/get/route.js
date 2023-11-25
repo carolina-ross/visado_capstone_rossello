@@ -9,17 +9,35 @@ export async function POST(request){
     try {
 
         await dbConnection();
-        let { destination, citizenship } = await request.json();
+        let { destination, citizenship , token } = await request.json();
 
         citizenship = citizenship.trim().toLowerCase();
 
         destination = destination.trim().toLowerCase();
 
+        let isSaved = false;
+
         const plan = await Plan.findOne({destination: destination , citizenship: citizenship});
 
         if( plan ){
+
+            if( token !== 'none' ){
+                const tokenUser = jwt.verify(token , process.env.PRIVATE_KEY_TOKEN);
+                const user = await User.findById(tokenUser._id).populate({
+                    path: 'plans', 
+                    model: Plan
+                }).exec();
+
+                user.plans.forEach(planSaved => {
+                    if(plan._id.equals(planSaved._id)){
+                        isSaved = true;
+                    }
+                })
+
+            }
+
             return NextResponse.json(
-                { success: true, data: plan },
+                { success: true, data: plan , isSaved: isSaved },
                 { status: 200 }
             );
         }
@@ -50,7 +68,7 @@ export async function POST(request){
         });
 
         return NextResponse.json(
-            { success: true, data: newPlan }, 
+            { success: true, data: newPlan , isSaved: isSaved }, 
             { status: 200}
         );
         

@@ -1,6 +1,4 @@
+import { LoadingComponent } from "./components/LoadingComponent"
 export default function Loading() {
-    return <div className="loading-container">
-        <img src="/logo-visado-loading.png" alt="Loading logo" />
-        <div className="loader"></div>
-    </div>
+    return <LoadingComponent />
   }

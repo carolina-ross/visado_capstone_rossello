@@ -1,20 +1,21 @@
 import { ButtonSaveTrip } from "./ButtonSaveTrip"
 import * as nodeFetch from "node-fetch";
 
-async function getVisaDetails(citizenship , destination){
+async function getVisaDetails(citizenship , destination , token){
     const response = await nodeFetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/plans/get`,{
       method: 'POST',
       body: JSON.stringify({
         destination: destination,
         citizenship: citizenship,
-        })
+        token: token
+      })
     })
     return response.json()
 }
 
-export const VisaDetail = async({searchParams}) => {
+export const VisaDetail = async({searchParams , token}) => {
 
-  const data = await getVisaDetails(searchParams.citizenship , searchParams.destination)
+  const data = await getVisaDetails(searchParams.citizenship , searchParams.destination , token)
 
   const visaDetailsList = () => {
 

@@ -1,9 +1,11 @@
 'use client'
 
 import { useState , useContext , useEffect } from 'react'
+import { LoadingComponent } from './LoadingComponent'
 import { AuthContext } from '../context/AuthContext'
 import { ButtonBack } from "./ButtonBack"
 import { useRouter } from 'next/navigation'
+
 
 
 export const FormRegister = ({isDesktop}) => {
@@ -13,6 +15,8 @@ export const FormRegister = ({isDesktop}) => {
   const [ registerForm , setRegisterForm ] = useState({})
 
   const [ errorRegister , setErrorRegister ] = useState({error: false , message: ''})
+
+  const [ isLoading , setIsLoading ] = useState(false)
 
   const router = useRouter();
 
@@ -34,12 +38,17 @@ export const FormRegister = ({isDesktop}) => {
   const handleSubmit = async(event) => {
     event.preventDefault();
     try{
+
+        setIsLoading(true);
+
         const response = await fetch('/api/users' , {
             method: 'POST',
             body: JSON.stringify(registerForm)
         })
 
         const data = await response.json();
+
+        setIsLoading(false);
         
         if(!data.success) 
             throw data
@@ -108,6 +117,7 @@ export const FormRegister = ({isDesktop}) => {
             </form>
         </div>
 
+        {  isLoading ? <LoadingComponent /> : null }
     </div>
   )
 }
