@@ -1,9 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
+import { ProfileLogo } from "./ProfileLogo"
 export const RegisterButton = () => {
   return (
      <Link href="/register" className="register-icon">
-        <Image src="/register-icon.svg" height={82} width={82} alt="register"/>
+        <ProfileLogo widthCircle={82} heightCircle={82} fontSize="24px" />
      </Link>
   )
 }

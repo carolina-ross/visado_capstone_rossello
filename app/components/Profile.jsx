@@ -2,6 +2,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Logo } from "./Logo"
+import { ProfileLogo } from "./ProfileLogo";
 import Image from "next/image"
 import Link from "next/link"
 
@@ -27,7 +28,7 @@ export const Profile = () => {
 
         <div className="profile-body">
             <h1>Hello { auth.user?.name }</h1>
-            <Image className="profile-image" src="/register-icon.svg" height={207} width={207} alt="profile" />
+            <ProfileLogo />
             <div className="profile-details">
                 <span>ID: {  auth.user?._id }</span>
                 <span>{ auth.user?.username }</span>

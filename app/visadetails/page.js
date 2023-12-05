@@ -7,7 +7,6 @@ import { AuthContext } from "../context/AuthContext"
 export default function VisaDetailsPage({searchParams}){
 
   const { auth } = useContext(AuthContext)
-  console.log("auth my :(" , auth)
 
   const token = auth.authenticated ? auth.token : 'none'
 

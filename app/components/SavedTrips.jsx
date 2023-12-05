@@ -18,13 +18,28 @@ export const SavedTrips = () => {
             body: JSON.stringify({token: auth.token })
         })
         
-
-
         const data = await response.json();
 
-        console.log("data" , data)
-
         setPlans(data.data.plans);
+    }
+
+    const removePlan = async(idPlan) => {
+        try{
+            const response = await fetch(`/api/users/plans`,{
+                method: 'DELETE',
+                body: JSON.stringify({token: auth.token , plan_id: idPlan })
+            })
+            const newPlans = plans.filter(plan => {
+                return plan._id !== idPlan
+            })
+
+            setPlans(newPlans)
+
+        }catch(error){
+            console.log("error" , error)
+        }
+       
+
     }
 
     useState(()=>{
@@ -35,7 +50,7 @@ export const SavedTrips = () => {
         <>
             {
                 plans.map((plan , idx) =>{
-                    return <SavedTrip plan={plan} key={idx} title={plan.destination} />
+                    return <SavedTrip removePlan={removePlan}  plan={plan} key={idx} title={plan.destination} />
                 })
             }
         </>

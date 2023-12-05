@@ -1,3 +1,4 @@
+import { render } from "react-dom";
 import { ButtonSaveTrip } from "./ButtonSaveTrip"
 import * as nodeFetch from "node-fetch";
 
@@ -25,9 +26,14 @@ export const VisaDetail = async({searchParams , token}) => {
           return <li> <strong>{ step.visaProcess.title }:</strong> {step.visaProcess.details} </li>
         })
     }else{
-      renderHtml = data.data.visa_details.visaCountryDocuments?.map((step)=>{
-        return <li> <strong>{ step.visaDocument.name }:</strong> {step.visaDocument.details} </li>
-      })
+      if(data.data.visa_details.visaCountryDocuments){
+        renderHtml = data.data.visa_details.visaCountryDocuments?.map((step)=>{
+          return <li> <strong>{ step.visaDocument.name }:</strong> {step.visaDocument.details} </li>
+        })
+      }else{
+        renderHtml = data.data.visa_details.visaRequirement.visaName + ': '
+        renderHtml += data.data.visa_details.visaRequirement.notes
+      }
     }
 
     return renderHtml;
